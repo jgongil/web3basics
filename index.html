@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Deploy a Remix Contract</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <h1>Deploy a Remix Contract</h1>
+    </div>
+
+    <script>
+
+        // Connect a the web3 provider
+        /*If there isn´t a provider specified it´ll default to an existing Web3 provider; it´ll check to see if there is an injected version
+        of the web3 provided by the user of the app (remember Metamask works as a injected web3 provider, basically is looking for Metamask)
+        On ther other hand, if there´s a web3 provider it´s gonna connect to that.*/
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+
+        // Set a default account
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+
+        // Get the contract address
+        var RemixContract = web3.eth.contract(CONTRACT-ABI-HERE);
+
+        // Get the contract abi
+        var myMessage = RemixContract.at('CONTRACT ADDRESS HERE');
+
+        console.log(myMessage);
+
+    </script>
+</body>
+
+</html>
